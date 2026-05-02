@@ -1,0 +1,93 @@
+import { GoogleGenerativeAI } from "@google/generative-ai";
+import { config } from "../config/config.js";
+
+const genAI = new GoogleGenerativeAI(config.GEMINI_API_KEY);
+const model = genAI.getGenerativeModel({ model: "gemini-flash-latest" });
+
+const generateSEOKeywords = async ({ businessName, location, category }) => {
+  const prompt = `
+    Generate 15 local SEO keywords for an Indian small business.
+    Business: ${businessName}
+    Location: ${location}
+    Category: ${category}
+
+    Rules:
+    - Include Hindi/Hinglish keywords
+    - Include "near me" variations
+    - Include location-specific keywords
+    - Return ONLY a JSON array of 15 strings, nothing else
+  `;
+
+  try {
+    const result = await model.generateContent(prompt);
+    const raw = result.response.text().trim();
+    const cleaned = raw.replace(/```json|```/gi, "").trim();
+    return JSON.parse(cleaned);
+  } catch (err) {
+    console.error("[Gemini Error]:", err.message);
+  }
+};
+
+const generatePosts = async ({ businessName, location, category }) => {
+  const prompt = `
+    Generate 10 local SEO posts for an Indian small business.
+    Business: ${businessName}
+    Location: ${location}
+    Category: ${category}
+    Rules:
+    - Include Hindi/Hinglish keywords
+    - Include "near me" variations
+    - Include location-specific keywords
+    - Return ONLY a JSON array of 10 strings, nothing else
+    `
+    try {
+    const result = await model.generateContent(prompt);
+    const raw = result.response.text().trim();
+    const cleaned = raw.replace(/```json|```/gi, "").trim();
+    return JSON.parse(cleaned);
+  } catch (err) {
+    console.error("[Gemini Error]:", err.message);
+  }
+
+}
+
+const analyzeCompetitor = async ({ businessName, location, category }) =>{
+    const prompt = `
+    You are a local business analyst for Indian small businesses.
+ 
+    Give competitor analysis for:
+    Business: ${businessName}
+    Location: ${location}
+    Category: ${category}
+ 
+    Return exactly 3 likely local competitors this business faces in this Indian locality.
+    For each competitor return:
+    - name: a realistic local business name for this area
+    - type: what kind of competitor (e.g. "Nearby same-category shop")
+    - theirStrength: what they are likely doing well on Google Maps
+    - yourOpportunity: one gap ${businessName} can exploit
+    - actionTip: one specific action ${businessName} should take this week to outrank them
+ 
+    Return ONLY a valid JSON array of 3 objects, nothing else.
+  `;
+ 
+  try {
+    const result = await model.generateContent(prompt);
+    const raw = result.response.text().trim();
+    const cleaned = raw.replace(/```json|```/gi, "").trim();
+    return JSON.parse(cleaned);
+  } catch (err) {
+    console.error("[Gemini Competitor Error]:", err.message);
+    return [
+      {
+        name: "Local Competitor",
+        type: "Nearby same-category shop",
+        theirStrength: "Has more Google reviews",
+        yourOpportunity: "You can post more regularly on Google Business",
+        actionTip: "Add 5 photos and post a weekly offer on Google Business Profile",
+      },
+    ];
+  }
+}
+
+export { generateSEOKeywords, generatePosts ,analyzeCompetitor };
