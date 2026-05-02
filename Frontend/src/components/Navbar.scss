@@ -1,0 +1,91 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 18px 40px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  color: white; // IMPORTANT (base color)
+  mix-blend-mode: difference;
+
+  z-index: 1000;
+}
+
+/* LEFT SIDE */
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+    color: inherit;
+  font-size: 1rem;
+  font-weight: 900;
+
+}
+
+.dot {
+  font-size: 18px;
+  margin-right: -10px;
+}
+
+/* RIGHT SIDE */
+.nav-right {
+  display: flex;
+ font-size: 1rem;
+  font-weight: 900;
+  gap: 30px;
+}
+
+.nav-right a {
+  text-decoration: none;
+  color: #111;
+  font-size: 1rem;
+  font-weight: 900;
+  letter-spacing: 1px;
+    color: inherit;
+}
+
+/* HOVER (subtle) */
+.nav-right a:hover {
+  opacity: 0.6;
+}
+
+.Home{
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.nav-item {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  height: 20px; /* important */
+  text-decoration: none;
+  color: black;
+  font-weight: 700;
+}
+
+/* BOTH TEXTS */
+.text {
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+/* SECOND TEXT starts below */
+.text.bottom {
+  position: absolute;
+  left: 0;
+  top: 100%;
+}
+
+/* 🔥 HOVER EFFECT */
+.nav-item:hover .top {
+  transform: translateY(-100%);
+}
+
+.nav-item:hover .bottom {
+  transform: translateY(-100%);
+}

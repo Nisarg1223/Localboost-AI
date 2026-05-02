@@ -1,0 +1,127 @@
+.list-section {
+  position: relative;
+  background-color: var(--bg-dark);
+  color: var(--text-light);
+  padding: 14vh 0 16vh;
+}
+
+.list-container {
+  padding: 0 1.2vw;
+}
+
+.list-row {
+  position: relative;
+  cursor: pointer;
+  // border-bottom: 1px solid rgba(235, 234, 228, 0.15);
+  padding: 3vh 0;
+
+  // &:first-child {
+  //   // border-top: 1px solid rgba(235, 234, 228, 0.15);
+  // }
+   position: relative;
+  z-index: 2;
+}
+
+.list-text {
+  font-size: 8.5vw;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+
+  display: flex;              
+  justify-content: center;    
+  width: 100%;
+}
+
+.services-btn-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 10vh;
+}
+
+.services-btn {
+  border: 1px solid #ebeae4;
+  border-radius: 9999px;
+  padding: 2vh 3.5vw;
+  font-size: 1.1vw;
+  letter-spacing: 0.18em;
+  color: #ebeae4;
+}
+
+/* Image follower */
+.image-follower {
+  position: fixed;
+  pointer-events: none;
+  // z-index: 100;
+  z-index: 1;
+   width: 420px;   
+  height: 520px; 
+  overflow: hidden;
+  border-radius: 6px;
+  opacity: 0;
+  will-change: transform, opacity, left, top;
+}
+.image-follower img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.letter-wrap {
+  display: inline-block;
+  overflow: hidden; // 🔥 THIS FIXES EVERYTHING
+  height: 1em;
+}
+.letter-inner {
+  display: flex;
+  flex-direction: column;
+  will-change: transform;
+  overflow: hidden;
+  // background-color: red;
+
+  span{
+    height:100%;
+   
+  }
+}
+.letter-current,
+.letter-next {
+  display: block;
+  height: 1em;
+  line-height: 1.15;
+}
+.break-text {
+  width: 100%;
+  text-align: center;
+
+  font-size: 12vw;   // 🔥 bigger than list
+  line-height: 1;
+  letter-spacing: -0.03em;
+
+  margin-bottom: 6vh;
+}
+.break-text {
+  width: 100%;
+  text-align: center;
+
+  font-size: 12vw;
+  line-height: 1;
+  letter-spacing: -0.03em;
+
+  margin-bottom: 4vh;
+}
+.list-header {
+  position: relative;
+  margin-bottom: 6vh;
+}
+.line {
+  width: 100%;
+  height: 1px; // 🔥 very thin
+  background: rgba(235, 234, 228, 0.2);
+}
+.label {
+  font-size: 0.9vw;      // 🔥 small
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+
+  margin-top: 1vh;
+  color: rgba(235, 234, 228, 0.6);
+}

@@ -1,0 +1,29 @@
+@font-face {
+  font-family: 'font1';
+  src: url('../assets//font//MG-B-BiU9T5KX.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+.text-transition-section {
+  position: relative;
+  overflow: hidden;
+  padding: 18vh 0;
+  background-color: var(--bg-brown);
+}
+
+.text-transition-container {
+  padding: 0 1.2vw;
+  text-align: center;
+  
+
+  h2 {
+    font-size: 14.5vw;
+    line-height: 1.1;
+    letter-spacing: -0.04em;
+    color: var(--text-brown);
+    letter-spacing: 5px;
+    font-family: "font1";
+  }
+}

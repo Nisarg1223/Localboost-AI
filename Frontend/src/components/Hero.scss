@@ -1,0 +1,68 @@
+.hero-section {
+  position: relative;
+}
+
+.hero-viewport {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+@font-face {
+  font-family: 'font1';
+  src: url('../assets//font/MG-B-BiU9T5KX.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.hero-title-container {
+  position: absolute;
+  top: 3vh;
+  left: 0;
+  width: 100%;
+  padding: 0 1.2vw;
+  // background-color: red;
+  z-index: 5;
+  
+text-align: center;
+  h1 {
+    font-size: 15vw;
+    // line-height: 1.1;
+    letter-spacing: -0.04em;
+    color: var(--text-dark);
+    font-family: "font1";
+  font-weight: 900;
+  letter-spacing:10px;
+  // color: blue;
+
+  }
+}
+
+/* Image starts centered between the two side texts */
+.hero-image-container {
+  position: absolute;
+  z-index: 10;
+  width: 28vw;
+  height: 35vh;
+  top: 55%;
+  /* left is set dynamically by GSAP to center it */
+
+  video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+}
+
+.hero-side-text {
+  position: absolute;
+  z-index: 5;
+  font-size: 3.2vw;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--text-dark);
+  white-space: nowrap;
+  top: 67.5%;
+  transform: translateY(-50%);
+}

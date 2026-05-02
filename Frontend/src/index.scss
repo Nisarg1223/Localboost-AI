@@ -1,0 +1,119 @@
+/* Global variables and utilities */
+:root {
+  --bg-light: #ebeae4;
+  --bg-dark: #090909;
+  --bg-brown: #341c09;
+  --text-light: #ebeae4;
+  --text-dark: #090909;
+  --text-brown: #eee9d1;
+}
+
+
+
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  overflow-x: hidden;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+  background: #EBEAE4;
+  color: #090909;
+  cursor: default;
+  -webkit-font-smoothing: antialiased;
+}
+
+.font-display {
+  font-family: 'Anton', 'Bebas Neue', sans-serif;
+  text-transform: uppercase;
+}
+
+.font-bebas {
+  font-family: 'Bebas Neue', sans-serif;
+  text-transform: uppercase;
+}
+
+/* Letter hover containers */
+.letter-wrap {
+  display: inline-block;
+  overflow: hidden;
+  position: relative;
+  vertical-align: bottom;
+  line-height: 1.15;
+  padding-top: 0.06em;
+  padding-bottom: 0.06em;
+  margin-top: -0.06em;
+  margin-bottom: -0.06em;
+}
+
+.letter-inner {
+  display: flex;
+  align-items: center;
+  will-change: transform;
+}
+
+.letter-inner .letter-current,
+.letter-inner .letter-gap,
+.letter-inner .letter-next {
+  flex-shrink: 0;
+}
+
+.letter-inner .letter-gap {
+  width: 0.25em;
+}
+
+/* Magnetic button */
+.magnetic-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  will-change: transform;
+}
+
+/* Section backgrounds */
+.section-light {
+  background: #ebeae4;
+  color: #090909;
+}
+
+.section-dark {
+  background: #090909;
+  color: #ebeae4;
+}
+
+.section-brown {
+  background: #341c09;
+  color: #eee9d1;
+}
+
+/* Smooth scrollbar hide */
+::-webkit-scrollbar {
+  width: 0;
+}
+
+html {
+  scrollbar-width: none;
+}
+
+.capsule-tag {
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  border-radius: 9999px;
+  padding: 5px 16px;
+  font-size: 12px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  color: #fff;
+  white-space: nowrap;
+  letter-spacing: 0.02em;
+}
