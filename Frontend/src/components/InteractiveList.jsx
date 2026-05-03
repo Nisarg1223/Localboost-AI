@@ -8,6 +8,7 @@ import bi from '../assets/brand_inteligence.png'
 import bs from '../assets/bs.png'
 import dp from '../assets/dp.png'
 import ie from '../assets/ie.png'
+import hover1 from '../assets/hover1.jpg'
 gsap.registerPlugin(ScrollTrigger);
 
 const listItems = [
@@ -29,7 +30,7 @@ const listItems = [
   },
   {
     text: "VISUAL IDENTITY",
-    img: "https://i.pinimg.com/1200x/03/b1/02/03b1022c1b1f013e562e59d4fb7ccc37.jpg",
+    img: hover1,
   },
 ];
 

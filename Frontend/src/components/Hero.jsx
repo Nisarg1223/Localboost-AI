@@ -15,86 +15,86 @@ export default function Hero() {
   const rightTextRef = useRef(null);
   const titleContainerRef = useRef(null);
 
-  useGSAP(
-    () => {
-      if (window.innerWidth < 768) return;
-      const stl = leftTextRef.current;
-      const str = rightTextRef.current;
+  useGSAP(() => {
+  if (window.innerWidth < 768) return;
 
-      const initPositions = () => {
-        const lW = stl.getBoundingClientRect().width;
-        const rW = str.getBoundingClientRect().width;
-        const vw = window.innerWidth;
-        const pad = vw * 0.025;
+  const stl = leftTextRef.current;
+  const str = rightTextRef.current;
 
-        const leftInit = pad;
-        const leftTarget = vw / 2 - lW;
-        const rightInit = vw - pad - rW;
-        const rightTarget = vw / 2;
+  let ctx = gsap.context(() => {
 
-        gsap.set(stl, { left: leftInit, right: "auto", visibility: "visible" });
-        gsap.set(str, {
-          right: "auto",
-          left: rightInit,
-          visibility: "visible",
-        });
+    const initPositions = () => {
+      ScrollTrigger.getAll().forEach(t => t.kill()); // 🔥 clear old triggers
 
-        // Calculate exact centered left for the image (avoids xPercent drift)
-        const imgRect = imageRef.current.getBoundingClientRect();
-        const imgLeft = vw / 2 - imgRect.width / 2;
-        gsap.set(imageRef.current, { left: imgLeft, xPercent: 0 });
+      const lW = stl.getBoundingClientRect().width;
+      const rW = str.getBoundingClientRect().width;
+      const vw = window.innerWidth;
+      const pad = vw * 0.025;
 
-        ScrollTrigger.create({
+      const leftInit = pad;
+      const leftTarget = vw / 2 - lW;
+      const rightInit = vw - pad - rW;
+      const rightTarget = vw / 2;
+
+      gsap.set(stl, { left: leftInit });
+      gsap.set(str, { left: rightInit });
+
+      const imgRect = imageRef.current.getBoundingClientRect();
+      const imgLeft = vw / 2 - imgRect.width / 2;
+
+      gsap.set(imageRef.current, { left: imgLeft });
+
+      ScrollTrigger.create({
+        trigger: sectionRef.current,
+        start: "top top",
+        end: "+=180%",
+        pin: viewportRef.current,
+      });
+
+      const heroTl = gsap.timeline({
+        scrollTrigger: {
           trigger: sectionRef.current,
           start: "top top",
           end: "+=180%",
-          pin: viewportRef.current,
-          pinSpacing: true,
-        });
+          scrub: true,
+        },
+      });
 
-        const heroTl = gsap.timeline({
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top top",
-            end: "+=180%",
-            scrub: true,
-          },
-        });
+      heroTl.to(stl, { left: leftTarget, ease: "none" }, 0);
+      heroTl.to(str, { left: rightTarget, ease: "none" }, 0);
 
-        // Side texts converge toward center
-        heroTl.to(stl, { left: leftTarget, ease: "none", duration: 0.6 }, 0);
-        heroTl.to(str, { left: rightTarget, ease: "none", duration: 0.6 }, 0);
+      heroTl.to(imageRef.current, { top: "80%" }, 0);
+      heroTl.to(imageRef.current, {
+        top: 0,
+        left: 0,
+        width: "100vw",
+        height: "100vh",
+      }, 0.3);
+    };
 
-        // Phase 1 (0 → 0.3): image dips down
-        heroTl.to(
-          imageRef.current,
-          { top: "80%", ease: "none", duration: 0.3 },
-          0,
-        );
+    initPositions();
 
-        // Phase 2 (0.3 → 1.0): image expands to completely fill the screen
-        heroTl.to(
-          imageRef.current,
-          {
-            top: 0,
-            left: 0,
-            width: "100vw",
-            height: "100vh",
-            ease: "none",
-            duration: 0.7,
-          },
-          0.3,
-        );
-      };
-
-      if (document.fonts.status === "loaded") {
+    // 🔥 KEY FIX: re-run on resize (with debounce)
+    let resizeTimer;
+    const handleResize = () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
         initPositions();
-      } else {
-        document.fonts.ready.then(initPositions);
-      }
-    },
-    { scope: sectionRef },
-  );
+        ScrollTrigger.refresh();
+      }, 200);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+
+  }, sectionRef);
+
+  return () => ctx.revert();
+
+}, { scope: sectionRef });
 
   return (
     <section id="hero-section" ref={sectionRef} className="hero-section">

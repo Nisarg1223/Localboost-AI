@@ -24,7 +24,6 @@
   top: 100vh;
   left: 50%;
   transform: translate(-50%, -50%);
-
   width: 60%;
   height: 80vh;
   z-index: 10;
@@ -38,27 +37,23 @@
 
 .about-bottom {
   background: #fff;
-  padding: 55vh 10vw 20vh; /* extra space for image */
+  padding: 55vh 10vw 20vh; 
   text-align: center;
 }
 
 .about-text {
-  font-family: sans-serif;   // same bold font
-  text-transform:capitalize;
+  font-family: sans-serif;
+  text-transform: capitalize;
   text-align: center;
-
   font-size: 2.2vw;
   line-height: 1.4;
   letter-spacing: 0.08em;
-
   max-width: 900px;
   margin: auto;
   color: #111;
 }
 
-
-
-
+/* --- LETTER HOVER UTILITIES --- */
 .letter-wrap {
   display: inline-block;
   overflow: hidden;
@@ -77,65 +72,8 @@
   line-height: 1;
 }
 
-
-@media (max-width: 768px) {
-  .about-title {
-    font-size: 18vw;
-  }
-
-  .about-image-wrapper {
-    position: relative;
-    top: auto;
-    transform: none;
-    width: 90%;
-    height: 50vh;
-    margin: 4vh auto;
-  }
-
-  .about-bottom {
-    padding: 12vh 6vw;
-  }
-
-  .about-text {
-    font-size: 4vw;
-  }
-}
-@media (max-width: 768px) {
-
-  .about-top {
-    height: auto;
-    padding: 12vh 5vw 6vh;
-    align-items: center;
-  }
-
-  .about-title {
-    font-size: 18vw;
-    line-height: 0.9;
-  }
-
-  /* 🔥 remove overlap trick in mobile */
-  .about-image-wrapper {
-    position: relative;
-    top: auto;
-    left: auto;
-    transform: none;
-
-    width: 100%;
-    height: 45vh;
-    margin: 4vh 0;
-  }
-
-  .about-bottom {
-    padding: 10vh 6vw;
-  }
-
-  .about-text {
-    font-size: 4.2vw;
-    line-height: 1.6;
-  }
-}
+/* --- TABLET BREAKPOINT --- */
 @media (min-width: 769px) and (max-width: 1024px) {
-
   .about-title {
     font-size: 12vw;
   }
@@ -150,21 +88,55 @@
   }
 
   .about-text {
-    font-size: 2.5vw;
+    font-size: 3vw;
   }
 }
+
+/* --- MOBILE BREAKPOINT --- */
 @media (max-width: 768px) {
+  .about-top {
+    height: auto;
+    padding: 15vh 5vw 6vh; 
+    align-items: center;
+    background: #556b00;
+  }
+
+  .about-title {
+    font-size: 18vw;
+    line-height: 0.9;
+    margin-bottom: 0;
+  }
+
+  .about-image-wrapper {
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+    width: 100%;
+    height: auto;
+    margin: 0; 
+    background: #556b00; 
+     margin: 0 auto;
+     background: #556b00; 
+     padding: 0 4vw;
+    img {
+      width: 100%;
+      height: 50vh;
+      object-fit: cover;
+      display: block; 
+    }
+  }
+
+  .about-bottom {
+    background: #fff;
+    padding: 8vh 6vw;
+    margin-top: -1px; 
+  }
+
   .about-text {
     font-size: 5vw;
     line-height: 1.5;
     letter-spacing: 0.06em;
     padding: 0 2vw;
-  }
-}
-
-/* 🔥 TABLET */
-@media (min-width: 769px) and (max-width: 1024px) {
-  .about-text {
-    font-size: 3vw;
   }
 }

@@ -5,6 +5,11 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import MagneticButton from './MagneticButton';
 import './Works.scss';
 import first from '../assets/first.png'
+import workimg1 from '../assets/workimg1.jpg'
+import workimg2 from '../assets/workimg2.webp'
+import workimg3 from '../assets/workimg3.jpg'
+import workimg4 from '../assets/workimg4.jpg'
+
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Works() {
@@ -91,7 +96,7 @@ export default function Works() {
 
         {/* Work 1 — Large */}
         <div className="work-item work-item-large">
-          <img src="https://i.pinimg.com/1200x/be/17/9d/be179de53ff616ce2dc1573e559176c5.jpg" alt="Work 1" />
+          <img src={workimg1} alt="Work 1" />
           <div className="work-overlay">
             <div className="overlay-left">
               <span className="font-bebas number">01</span>
@@ -108,7 +113,7 @@ export default function Works() {
         {/* Work 2 & 3 — Two small */}
         <div className="work-row">
           <div className="work-item work-item-small">
-            <img src="https://jasminegunarto.com/wp-content/uploads/2026/01/flow_stickers-scaled-2.webp" alt="Work 2" />
+            <img src={workimg2} />
             <div className="work-overlay">
               <div className="overlay-left">
                 <span className="font-bebas number">02</span>
@@ -122,7 +127,7 @@ export default function Works() {
             </div>
           </div>
           <div className="work-item work-item-small">
-            <img src="https://i.pinimg.com/1200x/a3/85/36/a385367fdd803eb01272e196856eeeeb.jpg" alt="Work 3" />
+            <img src={workimg3} alt="Work 3" />
             <div className="work-overlay">
               <div className="overlay-left">
                 <span className="font-bebas number">03</span>
@@ -139,7 +144,7 @@ export default function Works() {
 
         {/* Work 4 — Large */}
         <div className="work-item work-item-last">
-          <img src="https://images.unsplash.com/photo-1613909207039-6b173b755cc1?w=1400&q=80" alt="Work 4" />
+          <img src={workimg4} alt="Work 4" />
           <div className="work-overlay">
             <div className="overlay-left">
               <span className="font-bebas number">04</span>

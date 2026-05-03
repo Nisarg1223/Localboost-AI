@@ -26,9 +26,9 @@ export default function AboutServices() {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: line,
-  start: "top 70%", // Highlight starts earlier (at 70% of viewport)
-  end: "bottom 30%", // Ends later (at 30%)
-  toggleActions: "play reverse play reverse",
+          start: "top 55%",
+          end: "bottom 45%",
+          toggleActions: "play reverse play reverse",
         },
       });
 

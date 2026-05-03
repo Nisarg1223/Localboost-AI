@@ -9,23 +9,30 @@ gsap.registerPlugin(ScrollTrigger);
 export default function TextTransition() {
   const containerRef = useRef(null);
 
-  useGSAP(() => {
-    const lines = containerRef.current.querySelectorAll('.tt-line');
-    
-    lines.forEach((el, i) => {
-      const fromX = i % 2 === 0 ? '100%' : '-100%';
-      gsap.from(el, {
-        x: fromX,
+useGSAP(() => {
+  const lines = containerRef.current.querySelectorAll('.tt-line');
+
+  lines.forEach((el, i) => {
+    const direction = i % 2 === 0 ? 1 : -1;
+
+    gsap.fromTo(
+      el,
+      { x: direction * window.innerWidth }, // 🔥 KEY FIX
+      {
+        x: 0,
         duration: 1.2,
         ease: 'power3.out',
         scrollTrigger: {
           trigger: el,
           start: 'top 90%',
           toggleActions: 'play none none reverse',
+          invalidateOnRefresh: true,
         },
-      });
-    });
-  }, { scope: containerRef });
+      }
+    );
+  });
+
+}, { scope: containerRef });
 
   return (
     <section id="text-transition" className="text-transition-section" ref={containerRef}>

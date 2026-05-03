@@ -1,6 +1,19 @@
-import './Navbar.scss'
+import { useNavigate } from 'react-router-dom';
+import './Navbar.scss';
 
-const Navbar = () => {
+const Navbar = ({ setTrigger }) => {
+  const navigate = useNavigate();
+
+  const handleNavigation = (path) => {
+    // 🔥 start transition
+    setTrigger(true);
+
+    // ⏳ delay navigation to match animation
+    setTimeout(() => {
+      navigate(path);
+    }, 600); // match your GSAP duration
+  };
+
   return (
     <nav className="navbar">
       {/* LEFT */}
@@ -13,23 +26,21 @@ const Navbar = () => {
 
       {/* RIGHT */}
       <div className="nav-right">
-  <a href="#" className="nav-item">
-    <span className="text top">HOME</span>
-    <span className="text bottom">HOME</span>
-  </a>
+        <div className="nav-item" onClick={() => handleNavigation("/")}>
+          <span className="text top">HOME</span>
+          <span className="text bottom">HOME</span>
+        </div>
 
-  <a href="#" className="nav-item">
-    <span className="text top">DASHBOARD</span>
-    <span className="text bottom">DASHBOARD</span>
-  </a>
+        <div className="nav-item" onClick={() => handleNavigation("/dashboard")}>
+          <span className="text top">DASHBOARD</span>
+          <span className="text bottom">DASHBOARD</span>
+        </div>
 
-
-
-  <a href="#" className="nav-item">
-    <span className="text top">ABOUT</span>
-    <span className="text bottom">ABOUT</span>
-  </a>
-</div>
+        <div className="nav-item" onClick={() => handleNavigation("/about")}>
+          <span className="text top">ABOUT</span>
+          <span className="text bottom">ABOUT</span>
+        </div>
+      </div>
     </nav>
   );
 };

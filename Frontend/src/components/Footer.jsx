@@ -107,7 +107,7 @@ export default function Footer() {
     <div className="location">
       <span className="dot">•</span> INDIA
     </div>
-    <div className="time">{localTime}</div>
+    {/* <div className="time">{localTime}</div> */}
     <div className="coords">WE MADE IMPACT</div>
   </div>
   

@@ -28,7 +28,7 @@ export default function About() {
       <div className="about-image-wrapper">
         <img
           ref={imageRef}
-          src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=1200&q=80"
+          src="https://i.pinimg.com/736x/01/7a/58/017a588574fba0507416c16de2d7cde6.jpg"
           alt="about"
         />
       </div>

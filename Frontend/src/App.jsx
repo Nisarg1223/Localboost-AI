@@ -9,10 +9,12 @@ import InteractiveList from './components/InteractiveList';
 import Footer from './components/Footer';
 import Navbar from './components/Navbar';
 import Loader from './components/Loader';
-import About from './components/About'; 
+import About from './components/About';
+import PageTransition from './components/PageTransition'; // 🔥 ADD THIS
 
 function App() {
   const [loading, setLoading] = useState(true);
+  const [transition, setTransition] = useState(false); // 🔥 ADD THIS
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -26,11 +28,16 @@ function App() {
 
       {loading && <Loader />}
 
+      {/* 🔥 TRANSITION OVERLAY */}
+      <PageTransition
+        trigger={transition}
+        onComplete={() => setTransition(false)}
+      />
+
       <Layout>
-        <Navbar />
+        <Navbar setTrigger={setTransition} /> {/* 🔥 PASS PROP */}
 
         <Routes>
-          {/*  HOME PAGE */}
           <Route
             path="/"
             element={
@@ -43,7 +50,6 @@ function App() {
             }
           />
 
-          {/* ABOUT PAGE */}
           <Route path="/about" element={<About />} />
         </Routes>
 
