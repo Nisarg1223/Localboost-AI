@@ -4,7 +4,7 @@ import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import LetterHoverText from "./LetterHoverText";
 import "./Hero.scss";
-
+import video from '../assets/og_video.mp4'
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Hero() {
@@ -115,7 +115,7 @@ export default function Hero() {
         {/* Center Image — starts between the two side texts */}
         <div ref={imageRef} className="hero-image-container">
           <video
-            src="https://jasminegunarto.com/wp-content/uploads/2026/02/jgunarto_demoreel_compressed_1.mp4"
+            src={video}
             autoPlay
             loop
             muted
