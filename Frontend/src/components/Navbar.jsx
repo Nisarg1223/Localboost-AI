@@ -6,9 +6,9 @@ const Navbar = () => {
       {/* LEFT */}
       <div className="nav-left">
         <span className="dot">•</span>
-        <span>NEW YORK, US</span>
-        <span className="time">10:11 AM GMT-4</span>
-        <span className="coords">36.7783° N, 119.4179°</span>
+        <span>INDIA</span>
+        <span className="time">LOCALBOOST • ACTIVE</span>
+        <span className="coords">GLOBAL NETWORK</span>
       </div>
 
       {/* RIGHT */}
@@ -19,14 +19,11 @@ const Navbar = () => {
   </a>
 
   <a href="#" className="nav-item">
-    <span className="text top">WORKS</span>
-    <span className="text bottom">WORKS</span>
+    <span className="text top">DASHBOARD</span>
+    <span className="text bottom">DASHBOARD</span>
   </a>
 
-  <a href="#" className="nav-item">
-    <span className="text top">BREAK</span>
-    <span className="text bottom">BREAK</span>
-  </a>
+
 
   <a href="#" className="nav-item">
     <span className="text top">ABOUT</span>

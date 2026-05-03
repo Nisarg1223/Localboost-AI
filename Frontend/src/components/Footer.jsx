@@ -103,9 +103,19 @@ export default function Footer() {
       </div>
 
       <div className="footer-bottom">
-        <span>Based in Tokyo, Japan &nbsp;&middot;&nbsp; 35.6762&deg; N, 139.6503&deg; E &nbsp;&middot;&nbsp; <span id="local-time">{localTime}</span></span>
-        <span>&copy; 2024 STUDIO. All rights reserved.</span>
-      </div>
+  <div className="footer-bottom-top">
+    <div className="location">
+      <span className="dot">•</span> NEW YORK, US
+    </div>
+    <div className="time">{localTime}</div>
+    <div className="coords">36.7783° N, 119.4179°</div>
+  </div>
+  
+  <div className="footer-bottom-copy">
+    <div>©2026</div>
+    <div>ALL RIGHTS RESERVED</div>
+  </div>
+</div>
     </section>
   );
 }

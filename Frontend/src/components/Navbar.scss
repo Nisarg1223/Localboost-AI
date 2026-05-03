@@ -12,17 +12,23 @@
   mix-blend-mode: difference;
 
   z-index: 1000;
+
+  @media (max-width: 768px) {
+    padding: 14px 20px;
+}
 }
 
-/* LEFT SIDE */
 .nav-left {
   display: flex;
   align-items: center;
   gap: 25px;
-    color: inherit;
   font-size: 1rem;
   font-weight: 900;
 
+  @media (max-width: 768px) {
+    gap: 10px;          // 🔥 tighter
+    font-size: 12px;    // 🔥 smaller text
+  }
 }
 
 .dot {
@@ -30,21 +36,19 @@
   margin-right: -10px;
 }
 
-/* RIGHT SIDE */
 .nav-right {
   display: flex;
- font-size: 1rem;
-  font-weight: 900;
   gap: 30px;
-}
 
+  @media (max-width: 768px) {
+    gap: 18px;          // better spacing
+  }
+}
 .nav-right a {
   text-decoration: none;
-  color: #111;
-  font-size: 1rem;
+  color: inherit;
   font-weight: 900;
   letter-spacing: 1px;
-    color: inherit;
 }
 
 /* HOVER (subtle) */
@@ -62,12 +66,15 @@
   position: relative;
   display: inline-block;
   overflow: hidden;
-  height: 20px; /* important */
-  text-decoration: none;
-  color: black;
-  font-weight: 700;
-}
 
+  height: 18px;
+  font-size: 14px;
+
+  @media (max-width: 768px) {
+    height: 16px;
+    font-size: 12px;
+  }
+}
 /* BOTH TEXTS */
 .text {
   display: block;
@@ -88,4 +95,16 @@
 
 .nav-item:hover .bottom {
   transform: translateY(-100%);
+}
+@media (max-width: 768px) {
+  .time,
+  .coords {
+    display: none;
+  }
+}
+@media (max-width: 768px) {
+  .nav-item:hover .top,
+  .nav-item:hover .bottom {
+    transform: none;
+  }
 }
