@@ -10,11 +10,23 @@ gsap.registerPlugin(ScrollTrigger);
 export default function AboutServices() {
   const containerRef = useRef(null);
   const items = [
-     "DEVELOPERS",
-   "DEV SINGH",
-   "SUHAIL SAYYED",
-   "NISARG DARJI"
-  ];
+  {
+    name: "DEVELOPERS",
+    link: null
+  },
+  {
+    name: "DEV SINGH",
+    link: "https://www.linkedin.com/in/contactdevsingh?utm_source=share_via&utm_content=profile&utm_medium=member_android"
+  },
+  {
+    name: "SUHAIL SAYYED",
+    link: "https://www.linkedin.com/in/suhail-sayyed-b7616425b?utm_source=share_via&utm_content=profile&utm_medium=member_android"
+  },
+  {
+    name: "NISARG DARJI",
+    link: "https://www.linkedin.com/in/nisarg-darji-008106343?utm_source=share_via&utm_content=profile&utm_medium=member_android"
+  }
+];
 
   useGSAP(() => {
     const lines = containerRef.current.querySelectorAll(".service-line");
@@ -39,15 +51,30 @@ export default function AboutServices() {
   }, { scope: containerRef });
 
   return (
-    <section className="services-scroll-section" ref={containerRef}>
-      {items.map((item, index) => (
-        <div key={index} className="service-line font-display">
-          <span className="base-text">{item}</span>
-          <span className="highlight-text">{item}</span>
-          {/* THE HIGHLIGHTED LINE */}
-          <div className="service-underline"></div>
-        </div>
-      ))}
-    </section>
-  );
+  <section className="services-scroll-section" ref={containerRef}>
+    {items.map((item, index) => (
+      <div key={index} className="service-line font-display">
+
+        {/* 🔥 MAKE CLICKABLE */}
+        {item.link ? (
+          <a
+            href={item.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="base-text"
+          >
+            {item.name}
+          </a>
+        ) : (
+          <span className="base-text">{item.name}</span>
+        )}
+
+        {/* highlight stays same */}
+        <span className="highlight-text">{item.name}</span>
+
+        <div className="service-underline"></div>
+      </div>
+    ))}
+  </section>
+);
 }
