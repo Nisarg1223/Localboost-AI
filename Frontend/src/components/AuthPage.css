@@ -1,0 +1,88 @@
+.auth-page {
+  min-height: 100vh;
+  background: #090909;
+  color: #ebeae4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 460px;
+  background: #141414;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 42px;
+}
+
+.auth-brand {
+  font-size: 12px;
+  letter-spacing: 3px;
+  opacity: 0.7;
+  margin-bottom: 18px;
+}
+
+.auth-card h1 {
+  font-size: 44px;
+  line-height: 1;
+  margin-bottom: 14px;
+  text-transform: uppercase;
+}
+
+.auth-subtitle {
+  color: rgba(235, 234, 228, 0.65);
+  margin-bottom: 32px;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.input-group label {
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.input-group input {
+  background: #ebeae4;
+  border: none;
+  outline: none;
+  padding: 15px 16px;
+  font-size: 15px;
+  color: #090909;
+}
+
+.auth-card button {
+  width: 100%;
+  border: none;
+  background: #ebeae4;
+  color: #090909;
+  padding: 16px;
+  font-weight: 900;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 8px;
+}
+
+.auth-switch {
+  margin-top: 24px;
+  color: rgba(235, 234, 228, 0.7);
+}
+
+.auth-switch span {
+  color: #ebeae4;
+  cursor: pointer;
+  font-weight: 900;
+}
+
+.auth-note {
+  margin-top: 16px;
+  font-size: 12px;
+  opacity: 0.45;
+}/*# sourceMappingURL=AuthPage.css.map */

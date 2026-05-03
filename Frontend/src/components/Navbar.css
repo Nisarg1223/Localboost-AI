@@ -3,14 +3,11 @@
   top: 0;
   width: 100%;
   padding: 18px 40px;
-
   display: flex;
   justify-content: space-between;
   align-items: center;
-
   color: white;
   mix-blend-mode: difference;
-
   z-index: 1000;
 }
 
@@ -81,11 +78,9 @@
   border-radius: 999px;
   background: #deddd7;
   color: #111;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   margin-left: 4px;
   padding: 0;
   overflow: hidden;
@@ -101,6 +96,7 @@
 .get-started-nav .text.bottom {
   top: 100%;
 }
+
 /* DROPDOWN */
 .dropdown {
   position: relative;
@@ -141,4 +137,4 @@
 .dropdown-menu a:hover,
 .dropdown-menu button:hover {
   background: #222;
-}
+}/*# sourceMappingURL=Navbar.css.map */

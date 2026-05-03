@@ -1,6 +1,17 @@
-import './Navbar.scss'
+import { Link, useNavigate } from "react-router-dom";
+import "./Navbar.scss";
 
 const Navbar = () => {
+  const navigate = useNavigate();
+
+  // fake login state (frontend only)
+  const user = JSON.parse(localStorage.getItem("user"));
+
+  const handleLogout = () => {
+    localStorage.removeItem("user");
+    navigate("/");
+  };
+
   return (
     <nav className="navbar">
       {/* LEFT */}
@@ -13,26 +24,53 @@ const Navbar = () => {
 
       {/* RIGHT */}
       <div className="nav-right">
-  <a href="#" className="nav-item">
-    <span className="text top">HOME</span>
-    <span className="text bottom">HOME</span>
-  </a>
+        <Link to="/" className="nav-item">
+          <span className="text top">HOME</span>
+          <span className="text bottom">HOME</span>
+        </Link>
 
-  <a href="#" className="nav-item">
-    <span className="text top">WORKS</span>
-    <span className="text bottom">WORKS</span>
-  </a>
+        <a href="#" className="nav-item">
+          <span className="text top">WORKS</span>
+          <span className="text bottom">WORKS</span>
+        </a>
 
-  <a href="#" className="nav-item">
-    <span className="text top">BREAK</span>
-    <span className="text bottom">BREAK</span>
-  </a>
+        <a href="#" className="nav-item">
+          <span className="text top">BREAK</span>
+          <span className="text bottom">BREAK</span>
+        </a>
 
-  <a href="#" className="nav-item">
-    <span className="text top">ABOUT</span>
-    <span className="text bottom">ABOUT</span>
-  </a>
-</div>
+        <a href="#" className="nav-item">
+          <span className="text top">ABOUT</span>
+          <span className="text bottom">ABOUT</span>
+        </a>
+
+        {/* CONDITIONAL BUTTON */}
+        {!user ? (
+          <div className="dropdown">
+            <div className="nav-item get-started-nav">
+              <span className="text top">GET STARTED</span>
+              <span className="text bottom">GET STARTED</span>
+            </div>
+
+            <div className="dropdown-menu">
+              <Link to="/signin">Sign In</Link>
+              <Link to="/signup">Sign Up</Link>
+            </div>
+          </div>
+        ) : (
+          <div className="dropdown">
+            <div className="nav-item get-started-nav">
+              <span className="text top">PROFILE</span>
+              <span className="text bottom">PROFILE</span>
+            </div>
+
+            <div className="dropdown-menu">
+              <Link to="/profile">My Profile</Link>
+              <button onClick={handleLogout}>Logout</button>
+            </div>
+          </div>
+        )}
+      </div>
     </nav>
   );
 };
