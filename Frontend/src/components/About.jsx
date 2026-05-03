@@ -5,7 +5,12 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import "./About.scss";
 import LetterHoverText from "./LetterHoverText";
 import AboutServices from "./AboutServices";
-
+import { Canvas } from '@react-three/fiber'
+import { OrbitControls, useTexture } from '@react-three/drei'
+import * as THREE from 'three'
+import Scene from './Scene'
+import { Bloom} from '@react-three/postprocessing'
+import { EffectComposer } from '@react-three/postprocessing'
 gsap.registerPlugin(ScrollTrigger);
 
 export default function About() {
@@ -52,6 +57,22 @@ export default function About() {
 </p>
       </div>
 <AboutServices />
+      <div className="three">
+         <Canvas>
+      <OrbitControls />
+      <ambientLight />
+      <Scene />
+     <EffectComposer>
+        <Bloom
+        
+          luminanceThreshold={0.3}
+          luminanceSmoothing={0.9}
+          intensity={3.0}
+        />
+        
+      </EffectComposer>
+    </Canvas>
+      </div>
     </section>
   );
 }

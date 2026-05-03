@@ -47,10 +47,7 @@ const Navbar = ({ setTrigger }) => {
           <span className="text bottom">ABOUT</span>
         </div>
 
-        <a href="#" className="nav-item">
-          <span className="text top">WORKS</span>
-          <span className="text bottom">WORKS</span>
-        </a>
+       
 
         {!user ? (
           <div className="dropdown">
