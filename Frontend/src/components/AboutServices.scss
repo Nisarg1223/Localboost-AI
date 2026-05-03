@@ -1,0 +1,72 @@
+.services-scroll-section {
+  background: #556b00; 
+  // 🔥 Reduced vertical padding from 45vh to 15vh to remove the dead space
+  padding: 15vh 0;     
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4vh; // Tighter gap for a cleaner look
+  overflow: hidden;
+  width: 100%;
+}
+
+.service-line {
+  position: relative;
+  font-size: 10vw;
+  line-height: 1.1; 
+  text-align: center;
+  white-space: nowrap;
+  display: inline-block;
+
+  .base-text {
+    color: rgba(234, 231, 220, 0.1); 
+  }
+
+  .highlight-text {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    color: #eae7dc;
+    opacity: 0;
+    pointer-events: none;
+    text-shadow: 0 0 15px rgba(234, 231, 220, 0.2);
+  }
+
+  .service-underline {
+    position: absolute;
+    bottom: 2px;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 4px;
+    width: 0%;
+    background-color: #eae7dc; 
+    box-shadow: 0 0 10px rgba(234, 231, 220, 0.5);
+    pointer-events: none;
+  }
+}
+
+/* --- RESPONSIVE FIXES --- */
+
+@media (max-width: 768px) {
+  .services-scroll-section {
+    // 🔥 Balanced padding for mobile to prevent huge gaps between sections
+    padding: 8vh 0; 
+    gap: 6vh; 
+  }
+
+  .service-line {
+    font-size: 13vw; // Adjusted for better mobile fit
+    
+    .service-underline {
+      height: 2.5px;
+    }
+  }
+}
+
+// Tablet adjustment
+@media (min-width: 769px) and (max-width: 1024px) {
+  .services-scroll-section {
+    padding: 10vh 0;
+  }
+}
