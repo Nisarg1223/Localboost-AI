@@ -105,10 +105,10 @@ export default function Footer() {
       <div className="footer-bottom">
   <div className="footer-bottom-top">
     <div className="location">
-      <span className="dot">•</span> NEW YORK, US
+      <span className="dot">•</span> INDIA
     </div>
     <div className="time">{localTime}</div>
-    <div className="coords">36.7783° N, 119.4179°</div>
+    <div className="coords">WE MADE IMPACT</div>
   </div>
   
   <div className="footer-bottom-copy">
