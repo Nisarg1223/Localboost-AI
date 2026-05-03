@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 import Layout from "./components/Layout";
@@ -7,24 +8,11 @@ import Works from "./components/Works";
 import InteractiveList from "./components/InteractiveList";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
+import Loader from "./components/Loader";
+import About from "./components/About";
 import AuthPage from "./components/AuthPage";
 import ProfilePage from "./components/ProfilePage";
 
-/* 🔹 HOME PAGE */
-function HomePage() {
-  return (
-    <Layout>
-      <Navbar />
-      <Hero />
-      <TextTransition />
-      <Works />
-      <InteractiveList />
-      <Footer />
-    </Layout>
-  );
-}
-
-/* 🔹 PROTECTED ROUTE */
 function ProtectedRoute({ children }) {
   const user = JSON.parse(localStorage.getItem("user"));
 
@@ -35,31 +23,58 @@ function ProtectedRoute({ children }) {
   return children;
 }
 
-/* 🔹 APP */
 function App() {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 6000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <BrowserRouter>
-      <Routes>
-        {/* HOME */}
-        <Route path="/" element={<HomePage />} />
+      {loading && <Loader />}
 
-        {/* AUTH */}
-        <Route path="/signin" element={<AuthPage type="signin" />} />
-        <Route path="/signup" element={<AuthPage type="signup" />} />
+      <Layout>
+        <Navbar />
 
-        {/* PROFILE (PROTECTED) */}
-        <Route
-          path="/profile"
-          element={
-            <ProtectedRoute>
-              <Layout>
-                <Navbar />
+        <Routes>
+          {/* HOME PAGE */}
+          <Route
+            path="/"
+            element={
+              <>
+                <Hero />
+                <TextTransition />
+                <Works />
+                <InteractiveList />
+              </>
+            }
+          />
+
+          {/* ABOUT PAGE */}
+          <Route path="/about" element={<About />} />
+
+          {/* AUTH PAGES */}
+          <Route path="/signin" element={<AuthPage type="signin" />} />
+          <Route path="/signup" element={<AuthPage type="signup" />} />
+
+          {/* PROFILE PAGE */}
+          <Route
+            path="/profile"
+            element={
+              <ProtectedRoute>
                 <ProfilePage />
-              </Layout>
-            </ProtectedRoute>
-          }
-        />
-      </Routes>
+              </ProtectedRoute>
+            }
+          />
+        </Routes>
+
+        <Footer />
+      </Layout>
     </BrowserRouter>
   );
 }

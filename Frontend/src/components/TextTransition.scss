@@ -11,6 +11,14 @@
   overflow: hidden;
   padding: 18vh 0;
   background-color: var(--bg-brown);
+
+   @media (max-width: 768px) {
+    height: 100vh;              
+    display: flex;              
+    align-items: center;
+    justify-content: center;
+    padding: 0;                
+  }
 }
 
 .text-transition-container {
@@ -25,5 +33,12 @@
     color: var(--text-brown);
     letter-spacing: 5px;
     font-family: "font1";
+  }
+   @media (max-width: 768px) {
+    h2 {
+      font-size: 18vw;   // 🔥 bigger but controlled
+      line-height: 1;
+      letter-spacing: 2px;
+    }
   }
 }

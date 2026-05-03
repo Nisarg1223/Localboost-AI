@@ -4,7 +4,6 @@ import "./Navbar.scss";
 const Navbar = () => {
   const navigate = useNavigate();
 
-  // fake login state (frontend only)
   const user = JSON.parse(localStorage.getItem("user"));
 
   const handleLogout = () => {
@@ -17,9 +16,9 @@ const Navbar = () => {
       {/* LEFT */}
       <div className="nav-left">
         <span className="dot">•</span>
-        <span>NEW YORK, US</span>
-        <span className="time">10:11 AM GMT-4</span>
-        <span className="coords">36.7783° N, 119.4179°</span>
+        <span>INDIA</span>
+        <span className="time">LOCALBOOST • ACTIVE</span>
+        <span className="coords">GLOBAL NETWORK</span>
       </div>
 
       {/* RIGHT */}
@@ -35,8 +34,8 @@ const Navbar = () => {
         </a>
 
         <a href="#" className="nav-item">
-          <span className="text top">BREAK</span>
-          <span className="text bottom">BREAK</span>
+          <span className="text top">DASHBOARD</span>
+          <span className="text bottom">DASHBOARD</span>
         </a>
 
         <a href="#" className="nav-item">
@@ -44,7 +43,6 @@ const Navbar = () => {
           <span className="text bottom">ABOUT</span>
         </a>
 
-        {/* CONDITIONAL BUTTON */}
         {!user ? (
           <div className="dropdown">
             <div className="nav-item get-started-nav">

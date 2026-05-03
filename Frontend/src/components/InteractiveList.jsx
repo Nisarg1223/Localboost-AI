@@ -1,30 +1,50 @@
-import { useRef, useState, useEffect } from 'react';
-import gsap from 'gsap';
-import { useGSAP } from '@gsap/react';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import MagneticButton from './MagneticButton';
-import './InteractiveList.scss';
-
+import { useRef, useState, useEffect } from "react";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import MagneticButton from "./MagneticButton";
+import "./InteractiveList.scss";
+import bi from '../assets/brand_inteligence.png'
+import bs from '../assets/bs.png'
+import dp from '../assets/dp.png'
+import ie from '../assets/ie.png'
 gsap.registerPlugin(ScrollTrigger);
 
 const listItems = [
-  { text: 'ART DIRECTION', img: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=600&q=80' },
-  { text: 'BRAND STRATEGY', img: 'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=600&q=80' },
-  { text: 'DIGITAL DESIGN', img: 'https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=600&q=80' },
-  { text: 'MOTION GRAPHICS', img: 'https://images.unsplash.com/photo-1609921212029-bb5a28e60960?w=600&q=80' },
-  { text: 'VISUAL IDENTITY', img: 'https://images.unsplash.com/photo-1618556450994-a163d8d74e95?w=600&q=80' },
+  {
+    text: "Brand Intelligence",
+    img: bi
+  },
+  {
+    text: "BRAND STRATEGY",
+    img: bs,
+  },
+  {
+    text: "DIGITAL PRESENCE",
+    img: dp,
+  },
+  {
+    text: "Interactive Experiences",
+    img: ie,
+  },
+  {
+    text: "VISUAL IDENTITY",
+    img: "https://i.pinimg.com/1200x/03/b1/02/03b1022c1b1f013e562e59d4fb7ccc37.jpg",
+  },
 ];
 
 export default function InteractiveList() {
   const containerRef = useRef(null);
   const followerRef = useRef(null);
   const [hoveredImg, setHoveredImg] = useState(null);
-  
+  const isMobile = window.innerWidth < 768;
   const physics = useRef({
-    mX: 0, mY: 0,
-    fX: 0, fY: 0,
+    mX: 0,
+    mY: 0,
+    fX: 0,
+    fY: 0,
     isFollowing: false,
-    prevSkew: 0
+    prevSkew: 0,
   });
 
   useEffect(() => {
@@ -33,7 +53,7 @@ export default function InteractiveList() {
       physics.current.mY = e.clientY;
     };
 
-    document.addEventListener('mousemove', handleMouseMove);
+    document.addEventListener("mousemove", handleMouseMove);
 
     let animationFrameId;
     const tickFollower = () => {
@@ -49,8 +69,8 @@ export default function InteractiveList() {
         p.prevSkew += (targetSkew - p.prevSkew) * 0.12;
         const rot = p.prevSkew * 0.25;
 
-       followerRef.current.style.left = `${p.fX - 210}px`;
-followerRef.current.style.top = `${p.fY - 260}px`;
+        followerRef.current.style.left = `${p.fX - 210}px`;
+        followerRef.current.style.top = `${p.fY - 260}px`;
         followerRef.current.style.transform = `rotate(${rot.toFixed(2)}deg) skewX(${p.prevSkew.toFixed(2)}deg)`;
       }
       animationFrameId = requestAnimationFrame(tickFollower);
@@ -59,40 +79,44 @@ followerRef.current.style.top = `${p.fY - 260}px`;
     tickFollower();
 
     return () => {
-      document.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener("https://images.unsplash.com/photo-1618556450994-a163d8d74e95?w=600&q=80mousemove", handleMouseMove);
       cancelAnimationFrame(animationFrameId);
     };
   }, []);
 
-  useGSAP(() => {
-    const rows = containerRef.current.querySelectorAll('.list-row');
-    rows.forEach((row) => {
-      gsap.from(row, {
-        y: 50,
-        opacity: 0,
-        duration: 0.9,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: row,
-          start: 'top 88%',
-          toggleActions: 'play none none reverse',
-        },
+  useGSAP(
+    () => {
+      const rows = containerRef.current.querySelectorAll(".list-row");
+      rows.forEach((row) => {
+        gsap.from(row, {
+          y: 50,
+          opacity: 0,
+          duration: 0.9,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: row,
+            start: "top 88%",
+            toggleActions: "play none none reverse",
+          },
+        });
       });
-    });
-  }, { scope: containerRef });
+    },
+    { scope: containerRef },
+  );
 
   const handleMouseEnter = (rowIdx, img) => {
-    const row = containerRef.current.querySelectorAll('.list-row')[rowIdx];
-    const letters = row.querySelectorAll('.letter-inner');
-    
+    if (isMobile) return;
+    const row = containerRef.current.querySelectorAll(".list-row")[rowIdx];
+    const letters = row.querySelectorAll(".letter-inner");
+
     gsap.killTweensOf(letters);
     letters.forEach((inner, i) => {
-      const curr = inner.querySelector('.letter-current');
+      const curr = inner.querySelector(".letter-current");
       gsap.set(inner, { y: 0 });
       gsap.to(inner, {
         y: -curr.offsetHeight,
         duration: 0.5,
-        ease: 'power3.out',
+        ease: "power3.out",
         delay: i * 0.018,
       });
     });
@@ -104,79 +128,90 @@ followerRef.current.style.top = `${p.fY - 260}px`;
     const offsetX = rowIdx % 2 === 0 ? -100 : 100;
     p.fX = p.mX + offsetX;
     p.fY = p.mY;
-    
-   gsap.set(followerRef.current, { left: p.fX - 210, top: p.fY - 260 });
-    gsap.to(followerRef.current, { opacity: 1, scale: 1, duration: 0.5, ease: 'power2.out', overwrite: true });
+
+    gsap.set(followerRef.current, { left: p.fX - 210, top: p.fY - 260 });
+    gsap.to(followerRef.current, {
+      opacity: 1,
+      scale: 1,
+      duration: 0.5,
+      ease: "power2.out",
+      overwrite: true,
+    });
   };
 
   const handleMouseLeave = (rowIdx) => {
-    const row = containerRef.current.querySelectorAll('.list-row')[rowIdx];
-    const letters = row.querySelectorAll('.letter-inner');
+    if (isMobile) return;
+    const row = containerRef.current.querySelectorAll(".list-row")[rowIdx];
+    const letters = row.querySelectorAll(".letter-inner");
 
     gsap.killTweensOf(letters);
     letters.forEach((inner) => {
-      gsap.to(inner, { y: 0, duration: 0.35, ease: 'power3.inOut', overwrite: true });
+      gsap.to(inner, {
+        y: 0,
+        duration: 0.35,
+        ease: "power3.inOut",
+        overwrite: true,
+      });
     });
 
     const p = physics.current;
     p.isFollowing = false;
     p.prevSkew = 0;
-    gsap.to(followerRef.current, { opacity: 0, scale: 0, duration: 0.32, ease: 'power2.in', overwrite: true });
+    gsap.to(followerRef.current, {
+      opacity: 0,
+      scale: 0,
+      duration: 0.32,
+      ease: "power2.in",
+      overwrite: true,
+    });
   };
 
   return (
     <>
       <section id="list-section" className="list-section" ref={containerRef}>
-       
         <div className="list-container">
-          
-           <div className="break-text font-display">
-    BREAK
-  </div>
+          <div className="break-text font-display">BOOST</div>
 
-  {/* thin line + small text */}
-  <div className="list-header">
-    <div className="line"></div>
-    <div className="label">text</div>
-  </div>
-
- 
-{listItems.map((item, idx) => (
-  <div 
-    key={idx}
-    className="list-row"
-    onMouseEnter={() => handleMouseEnter(idx, item.img)}
-    onMouseLeave={() => handleMouseLeave(idx)}
-  >
-    {/* your content here */}
-  </div>
-))}
+          {/* thin line + small text */}
+          <div className="list-header">
+            <div className="line"></div>
+            <div className="inner-divs">
+              <div className="label">short,experimental designs</div>
+              <div className="label">Small scale</div>
+            </div>
+          </div>
 
           {listItems.map((item, idx) => (
-            <div 
+            <div
               key={idx}
-              className="list-row" 
+              className="list-row"
               onMouseEnter={() => handleMouseEnter(idx, item.img)}
               onMouseLeave={() => handleMouseLeave(idx)}
             >
               <div className="list-text font-display">
-              
-                {item.text.split('').map((char, charIdx) => (
-                   
-                  <span key={charIdx} className="letter-wrap" >
+                {item.text.split("").map((char, charIdx) => (
+                  <span key={charIdx} className="letter-wrap">
                     <span className="letter-inner">
-                      <span className="letter-current">{char === ' ' ? '\u00A0' : char}</span>
-                      <span className="letter-next">{char === ' ' ? '\u00A0' : char}</span>
+                      <span className="letter-current">
+                        {char === " " ? "\u00A0" : char}
+                      </span>
+                      <span className="letter-next">
+                        {char === " " ? "\u00A0" : char}
+                      </span>
                     </span>
                   </span>
                 ))}
               </div>
+             
+    <div className="list-image">
+      <img src={item.img} alt={item.text} />
+    </div>
             </div>
           ))}
 
           <div className="services-btn-container">
             <MagneticButton className="services-btn font-bebas">
-              VIEW ALL SERVICES
+             DashBoard
             </MagneticButton>
           </div>
         </div>
