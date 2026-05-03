@@ -1,8 +1,9 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import './Navbar.scss';
 
 const Navbar = ({ setTrigger }) => {
   const navigate = useNavigate();
+  const user = JSON.parse(localStorage.getItem("user"));
 
   const handleNavigation = (path) => {
     // 🔥 start transition
@@ -13,14 +14,6 @@ const Navbar = ({ setTrigger }) => {
       navigate(path);
     }, 600); // match your GSAP duration
   };
-
-import { Link, useNavigate } from "react-router-dom";
-import "./Navbar.scss";
-
-const Navbar = () => {
-  const navigate = useNavigate();
-
-  const user = JSON.parse(localStorage.getItem("user"));
 
   const handleLogout = () => {
     localStorage.removeItem("user");
@@ -53,24 +46,10 @@ const Navbar = () => {
           <span className="text top">ABOUT</span>
           <span className="text bottom">ABOUT</span>
         </div>
-        <Link to="/" className="nav-item">
-          <span className="text top">HOME</span>
-          <span className="text bottom">HOME</span>
-        </Link>
 
         <a href="#" className="nav-item">
           <span className="text top">WORKS</span>
           <span className="text bottom">WORKS</span>
-        </a>
-
-        <a href="#" className="nav-item">
-          <span className="text top">DASHBOARD</span>
-          <span className="text bottom">DASHBOARD</span>
-        </a>
-
-        <a href="#" className="nav-item">
-          <span className="text top">ABOUT</span>
-          <span className="text bottom">ABOUT</span>
         </a>
 
         {!user ? (
@@ -102,5 +81,5 @@ const Navbar = () => {
     </nav>
   );
 };
-}
+
 export default Navbar;
