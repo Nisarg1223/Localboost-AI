@@ -1,18 +1,20 @@
-import { useNavigate, Link } from 'react-router-dom';
-import './Navbar.scss';
+import { Link, useNavigate } from "react-router-dom";
+import "./Navbar.scss";
 
 const Navbar = ({ setTrigger }) => {
   const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem("user"));
 
   const handleNavigation = (path) => {
-    // 🔥 start transition
-    setTrigger(true);
+    if (setTrigger) {
+      setTrigger(true);
 
-    // ⏳ delay navigation to match animation
-    setTimeout(() => {
+      setTimeout(() => {
+        navigate(path);
+      }, 600);
+    } else {
       navigate(path);
-    }, 600); // match your GSAP duration
+    }
   };
 
   const handleLogout = () => {
@@ -22,7 +24,6 @@ const Navbar = ({ setTrigger }) => {
 
   return (
     <nav className="navbar">
-      {/* LEFT */}
       <div className="nav-left">
         <span className="dot">•</span>
         <span>INDIA</span>
@@ -30,24 +31,24 @@ const Navbar = ({ setTrigger }) => {
         <span className="coords">GLOBAL NETWORK</span>
       </div>
 
-      {/* RIGHT */}
       <div className="nav-right">
-        <div className="nav-item" onClick={() => handleNavigation("/")}>
+        <button className="nav-item nav-button" onClick={() => handleNavigation("/")}>
           <span className="text top">HOME</span>
           <span className="text bottom">HOME</span>
-        </div>
+        </button>
 
-        <div className="nav-item" onClick={() => handleNavigation("/dashboard")}>
+        <button
+          className="nav-item nav-button"
+          onClick={() => handleNavigation("/dashboard")}
+        >
           <span className="text top">DASHBOARD</span>
           <span className="text bottom">DASHBOARD</span>
-        </div>
+        </button>
 
-        <div className="nav-item" onClick={() => handleNavigation("/about")}>
+        <button className="nav-item nav-button" onClick={() => handleNavigation("/about")}>
           <span className="text top">ABOUT</span>
           <span className="text bottom">ABOUT</span>
-        </div>
-
-       
+        </button>
 
         {!user ? (
           <div className="dropdown">
@@ -70,7 +71,9 @@ const Navbar = ({ setTrigger }) => {
 
             <div className="dropdown-menu">
               <Link to="/profile">My Profile</Link>
-              <button onClick={handleLogout}>Logout</button>
+              <button type="button" onClick={handleLogout}>
+                Logout
+              </button>
             </div>
           </div>
         )}

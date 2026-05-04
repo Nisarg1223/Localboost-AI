@@ -1,0 +1,155 @@
+.dashboard-page {
+  min-height: 100vh;
+  background: #050505;
+  color: #fff;
+  padding: 110px 40px;
+}
+
+.dashboard-header h1 {
+  font-size: 48px;
+  margin-bottom: 10px;
+}
+
+.dashboard-header p {
+  color: #888;
+  margin-bottom: 30px;
+  font-size: 18px;
+}
+
+.error-box {
+  background: rgba(198, 83, 41, 0.15);
+  border: 1px solid rgba(198, 83, 41, 0.5);
+  color: #df6a3b;
+  padding: 14px 18px;
+  border-radius: 12px;
+  margin-bottom: 24px;
+  font-weight: 800;
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 26px;
+}
+
+.card {
+  background: #121212;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 22px;
+  padding: 32px;
+  min-height: 270px;
+}
+
+.card h2 {
+  margin-bottom: 20px;
+  font-size: 28px;
+}
+
+.card h3 {
+  margin: 20px 0 10px;
+  color: #fff;
+}
+
+.card input,
+.card textarea {
+  width: 100%;
+  margin-bottom: 14px;
+  padding: 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: #070707;
+  color: #fff;
+  font-weight: 600;
+  outline: none;
+}
+
+.card input::placeholder,
+.card textarea::placeholder {
+  color: #666;
+}
+
+.card button {
+  width: 100%;
+  padding: 14px;
+  border-radius: 12px;
+  background: #c65329;
+  border: none;
+  color: white;
+  font-weight: 900;
+  cursor: pointer;
+  transition: 0.3s ease;
+  margin-bottom: 12px;
+}
+
+.card button:hover {
+  background: #df6a3b;
+}
+
+.card button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.secondary-btn {
+  background: #1d1d1d !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+}
+
+.secondary-btn:hover {
+  background: #2a2a2a !important;
+}
+
+.card ul {
+  padding-left: 20px;
+}
+
+.card li,
+.card p {
+  color: #aaa;
+  margin-bottom: 8px;
+  font-size: 16px;
+  line-height: 1.45;
+}
+
+.card strong {
+  color: #fff;
+}
+
+.muted {
+  color: #888;
+}
+
+.preview-box {
+  margin-top: 18px;
+  background: #070707;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  padding: 18px;
+  white-space: pre-line;
+}
+
+.competitor {
+  background: #070707;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 14px;
+  padding: 16px;
+  margin-bottom: 14px;
+}
+
+.activity-card {
+  grid-column: span 2;
+}
+
+@media (max-width: 900px) {
+  .dashboard-page {
+    padding: 100px 20px;
+  }
+
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .activity-card {
+    grid-column: span 1;
+  }
+}

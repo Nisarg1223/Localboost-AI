@@ -1,40 +1,49 @@
 import { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
-import Layout from './components/Layout';
-import Hero from './components/Hero';
-import TextTransition from './components/TextTransition';
-import Works from './components/Works';
-import InteractiveList from './components/InteractiveList';
-import Footer from './components/Footer';
-import Navbar from './components/Navbar';
-import Loader from './components/Loader';
-import About from './components/About';
-import PageTransition from './components/PageTransition'; // 🔥 ADD THIS
-
-
+import Layout from "./components/Layout";
+import Hero from "./components/Hero";
+import TextTransition from "./components/TextTransition";
+import Works from "./components/Works";
+import InteractiveList from "./components/InteractiveList";
+import Footer from "./components/Footer";
+import Navbar from "./components/Navbar";
+import Loader from "./components/Loader";
+import About from "./components/About";
 import AuthPage from "./components/AuthPage";
 import ProfilePage from "./components/ProfilePage";
+import DashboardPage from "./components/DashboardPage"; // ✅ USE THIS ONLY
 
+/* 🔒 PROTECTED ROUTE */
 function ProtectedRoute({ children }) {
   const user = JSON.parse(localStorage.getItem("user"));
 
   if (!user) {
-    return <Navigate to="/signin" />;
+    return <Navigate to="/signin" replace />;
   }
 
   return children;
 }
 
+/* 🏠 HOME */
+function HomePage() {
+  return (
+    <>
+      <Hero />
+      <TextTransition />
+      <Works />
+      <InteractiveList />
+      <Footer />
+    </>
+  );
+}
+
+/* 🚀 APP */
 function App() {
   const [loading, setLoading] = useState(true);
-  const [transition, setTransition] = useState(false); // 🔥 ADD THIS
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 6000);
-
+    const timer = setTimeout(() => setLoading(false), 6000);
     return () => clearTimeout(timer);
   }, []);
 
@@ -42,36 +51,29 @@ function App() {
     <BrowserRouter>
       {loading && <Loader />}
 
-      {/* 🔥 TRANSITION OVERLAY */}
-      <PageTransition
-        trigger={transition}
-        onComplete={() => setTransition(false)}
-      />
-
       <Layout>
-        <Navbar setTrigger={setTransition} /> {/* 🔥 PASS PROP */}
+        <Navbar />
 
         <Routes>
-          {/* HOME PAGE */}
+          {/* HOME */}
+          <Route path="/" element={<HomePage />} />
+
+          {/* ABOUT */}
           <Route
-            path="/"
+            path="/about"
             element={
               <>
-                <Hero />
-                <TextTransition />
-                <Works />
-                <InteractiveList />
+                <About />
+                <Footer />
               </>
             }
           />
 
-          <Route path="/about" element={<About />} />
-
-          {/* AUTH PAGES */}
+          {/* AUTH */}
           <Route path="/signin" element={<AuthPage type="signin" />} />
           <Route path="/signup" element={<AuthPage type="signup" />} />
 
-          {/* PROFILE PAGE */}
+          {/* PROFILE */}
           <Route
             path="/profile"
             element={
@@ -80,9 +82,17 @@ function App() {
               </ProtectedRoute>
             }
           />
-        </Routes>
 
-        <Footer />
+          {/* DASHBOARD */}
+          <Route
+            path="/dashboard"
+            element={
+              <ProtectedRoute>
+                <DashboardPage />
+              </ProtectedRoute>
+            }
+          />
+        </Routes>
       </Layout>
     </BrowserRouter>
   );
