@@ -35,7 +35,6 @@ function HomePage() {
       <TextTransition />
       <Works />
       <InteractiveList />
-      <Footer />
     </>
   );
 }
@@ -72,19 +71,10 @@ function App() {
       />
 
       <Routes>
-
-        {/* ✅ MAIN PAGES (WITH FOOTER) */}
+      
+        {/* ✅ MAIN PAGES (WITH NAVBAR + FOOTER) */}
         <Route element={<MainLayout />}>
-          <Route
-            path="/about"
-            element={
-              <>
-                <About />
-                <Footer />
-              </>
-            }
-          />
-
+          <Route path="/" element={<HomePage />} />
           <Route path="/about" element={<About />} />
         </Route>
 
