@@ -90,4 +90,35 @@ const analyzeCompetitor = async ({ businessName, location, category }) =>{
   }
 }
 
-export { generateSEOKeywords, generatePosts ,analyzeCompetitor };
+const generateWhatsAppPost = async ({ businessName, location, category }) => {
+  const prompt = `
+    You are a WhatsApp marketing expert for Indian local businesses.
+ 
+    Write 1 WhatsApp broadcast post for:
+    Business: ${businessName}
+    Location: ${location}
+    Category: ${category}
+ 
+    Rules:
+    - Start with a warm greeting in Hinglish
+    - Mention the business name and location naturally
+    - Write a short offer or update (1-2 lines)
+    - End with a soft call to action (visit, call, reply)
+    - Add 4-5 relevant hashtags at the end
+    - Use 2-3 relevant emojis throughout
+    - Keep it under 100 words
+    - Tone: friendly, local, trustworthy — not spammy
+ 
+    Return ONLY the raw post text as a plain string. No JSON, no explanation.
+  `;
+ 
+  try {
+    const result = await model.generateContent(prompt);
+    return result.response.text().trim();
+  } catch (err) {
+    console.error("[Gemini WhatsApp Error]:", err.message);
+    return `Namaste! 🙏 ${businessName} mein aapka swagat hai!\n\nIs hafte khaas offers hain — aaj hi visit karein ya call karein.\n\n📍 ${location}\n\n#${category.replace(/\s+/g, "")} #${location.replace(/\s+/g, "")} #LocalBusiness #IndiaFirst`;
+  }
+};
+
+export { generateSEOKeywords, generatePosts ,analyzeCompetitor, generateWhatsAppPost }; 

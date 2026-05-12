@@ -2,6 +2,7 @@ import express from "express";
 import morgan from "morgan";
 import cors from "cors";
 import seoRouter from "../routes/seo.routes.js";
+import messageRouter from "../routes/message.routes.js";
 const app = express();
 
 app.use(cors());
@@ -15,5 +16,6 @@ app.get("/",(req,res)=>{
     })
 });
 app.use("/api/seo",seoRouter);
+app.use("/api/message",messageRouter);
 
 export default app;

@@ -14,26 +14,39 @@ import PageTransition from "./components/PageTransition";
 
 import AuthPage from "./components/AuthPage";
 import ProfilePage from "./components/ProfilePage";
+import DashboardPage from "./components/DashboardPage"; // ✅ USE THIS ONLY
 
+/* 🔒 PROTECTED ROUTE */
 function ProtectedRoute({ children }) {
   const user = JSON.parse(localStorage.getItem("user"));
 
   if (!user) {
-    return <Navigate to="/signin" />;
+    return <Navigate to="/signin" replace />;
   }
 
   return children;
 }
 
+/* 🏠 HOME */
+function HomePage() {
+  return (
+    <>
+      <Hero />
+      <TextTransition />
+      <Works />
+      <InteractiveList />
+      <Footer />
+    </>
+  );
+}
+
+/* 🚀 APP */
 function App() {
   const [loading, setLoading] = useState(true);
   const [transition, setTransition] = useState(false);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 6000);
-
+    const timer = setTimeout(() => setLoading(false), 6000);
     return () => clearTimeout(timer);
   }, []);
 
@@ -63,13 +76,11 @@ function App() {
         {/* ✅ MAIN PAGES (WITH FOOTER) */}
         <Route element={<MainLayout />}>
           <Route
-            path="/"
+            path="/about"
             element={
               <>
-                <Hero />
-                <TextTransition />
-                <Works />
-                <InteractiveList />
+                <About />
+                <Footer />
               </>
             }
           />
