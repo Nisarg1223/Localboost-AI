@@ -1,6 +1,6 @@
 import { useRef, useEffect } from "react";
 import gsap from "gsap";
-
+import pen from '../assets/pen_img.gif'
 export default function PageTransition({ trigger, onComplete }) {
   const overlayRef = useRef(null);
 

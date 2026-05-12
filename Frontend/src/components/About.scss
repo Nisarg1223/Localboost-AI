@@ -140,8 +140,93 @@
     padding: 0 2vw;
   }
 }
-.three{
+// .three{
+//     height: 100vh;
+//     width: 100vw;
+//     background-color: black;
+// }/
+
+/* SPLIT HERO SECTION */
+.about-hero {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  background: black;
+}
+
+/* LEFT SIDE (3D) */
+.about-3d {
+  width: 50%;
+  height: 100%;
+}
+
+/* RIGHT SIDE (TEXT) */
+.about-info {
+  width: 50%;
+  height: 100%;
+  color: white;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 6vw;
+}
+
+/* TEXT STYLING */
+.name {
+  font-size: 4vw;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  font-family: cursive;
+}
+
+.role {
+  font-size: 1.5vw;
+  opacity: 0.7;
+  margin-bottom: 2rem;
+}
+
+.linkedin {
+  font-size: 1.2vw;
+  text-decoration: none;
+  color: white;
+  border-bottom: 1px solid white;
+  width: fit-content;
+  transition: 0.3s;
+}
+
+.linkedin:hover {
+  opacity: 0.6;
+}
+@media (max-width: 768px) {
+
+  .about-hero {
     height: 100vh;
-    width: 100vw;
-    background-color: black;
+    width: 100%;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* Hide text */
+  .about-info {
+    display: none;
+  }
+
+  /* Full control of 3D container */
+  .about-3d {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* IMPORTANT — make canvas properly sized */
+  .about-3d canvas {
+    width: 100% !important;
+    height: 100% !important;
+  }
 }

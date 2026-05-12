@@ -1,17 +1,16 @@
 import { useState, useEffect } from "react";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, Outlet } from "react-router-dom";
 
-import Layout from './components/Layout';
-import Hero from './components/Hero';
-import TextTransition from './components/TextTransition';
-import Works from './components/Works';
-import InteractiveList from './components/InteractiveList';
-import Footer from './components/Footer';
-import Navbar from './components/Navbar';
-import Loader from './components/Loader';
-import About from './components/About';
-import PageTransition from './components/PageTransition'; // 🔥 ADD THIS
-
+import Layout from "./components/Layout";
+import Hero from "./components/Hero";
+import TextTransition from "./components/TextTransition";
+import Works from "./components/Works";
+import InteractiveList from "./components/InteractiveList";
+import Footer from "./components/Footer";
+import Navbar from "./components/Navbar";
+import Loader from "./components/Loader";
+import About from "./components/About";
+import PageTransition from "./components/PageTransition";
 
 import AuthPage from "./components/AuthPage";
 import ProfilePage from "./components/ProfilePage";
@@ -28,7 +27,7 @@ function ProtectedRoute({ children }) {
 
 function App() {
   const [loading, setLoading] = useState(true);
-  const [transition, setTransition] = useState(false); // 🔥 ADD THIS
+  const [transition, setTransition] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -38,21 +37,31 @@ function App() {
     return () => clearTimeout(timer);
   }, []);
 
+  // ✅ MAIN LAYOUT (ONLY FOR HOME + ABOUT)
+  function MainLayout() {
+    return (
+      <>
+        <Navbar setTrigger={setTransition} />
+        <Outlet />
+        <Footer />
+      </>
+    );
+  }
+
   return (
     <BrowserRouter>
       {loading && <Loader />}
 
-      {/* 🔥 TRANSITION OVERLAY */}
+      {/* PAGE TRANSITION OVERLAY */}
       <PageTransition
         trigger={transition}
         onComplete={() => setTransition(false)}
       />
 
-      <Layout>
-        <Navbar setTrigger={setTransition} /> {/* 🔥 PASS PROP */}
+      <Routes>
 
-        <Routes>
-          {/* HOME PAGE */}
+        {/* ✅ MAIN PAGES (WITH FOOTER) */}
+        <Route element={<MainLayout />}>
           <Route
             path="/"
             element={
@@ -66,24 +75,23 @@ function App() {
           />
 
           <Route path="/about" element={<About />} />
+        </Route>
 
-          {/* AUTH PAGES */}
-          <Route path="/signin" element={<AuthPage type="signin" />} />
-          <Route path="/signup" element={<AuthPage type="signup" />} />
+        {/* ❌ AUTH PAGES (NO FOOTER) */}
+        <Route path="/signin" element={<AuthPage type="signin" />} />
+        <Route path="/signup" element={<AuthPage type="signup" />} />
 
-          {/* PROFILE PAGE */}
-          <Route
-            path="/profile"
-            element={
-              <ProtectedRoute>
-                <ProfilePage />
-              </ProtectedRoute>
-            }
-          />
-        </Routes>
+        {/* 🔒 PROTECTED PROFILE (NO FOOTER) */}
+        <Route
+          path="/profile"
+          element={
+            <ProtectedRoute>
+              <ProfilePage />
+            </ProtectedRoute>
+          }
+        />
 
-        <Footer />
-      </Layout>
+      </Routes>
     </BrowserRouter>
   );
 }
