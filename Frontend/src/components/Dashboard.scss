@@ -1,0 +1,779 @@
+// Theme Variables
+.light-theme {
+  --bg-color: #EBEAE4;
+  --sidebar-bg: #E3E1D8;
+  --text-primary: #1A1A1A;
+  --text-secondary: #555555;
+  --border-color: rgba(0, 0, 0, 0.05);
+  --card-shadow: rgba(0,0,0,0.05);
+  --pill-border: rgba(0,0,0,0.1);
+  --pill-active-bg: #111;
+  --pill-active-text: #fff;
+  --pill-hover-border: rgba(0,0,0,0.3);
+  --item-hover-bg: rgba(0,0,0,0.03);
+}
+
+.dark-theme {
+  --bg-color: #121212;
+  --sidebar-bg: #1A1A1A;
+  --text-primary: #FFFFFF;
+  --text-secondary: #AAAAAA;
+  --border-color: rgba(255, 255, 255, 0.05);
+  --card-shadow: rgba(0,0,0,0.3);
+  --pill-border: rgba(255,255,255,0.1);
+  --pill-active-bg: #fff;
+  --pill-active-text: #111;
+  --pill-hover-border: rgba(255,255,255,0.3);
+  --item-hover-bg: rgba(255,255,255,0.05);
+}
+
+$yellow: #FFD100;
+$orange: #FF5E2A;
+$pink: #FF6B9E;
+$green: #00D2A0;
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+}
+
+.dashboard-container {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+  overflow: visible;
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* SIDEBAR */
+.sidebar {
+  width: 240px;
+  background-color: var(--sidebar-bg);
+  padding: 32px 24px;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid var(--border-color);
+  transition: background-color 0.3s ease;
+
+  &.closed {
+    display: none;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 20px;
+    font-weight: 800;
+    margin-bottom: 48px;
+    
+    svg {
+      color: var(--text-primary);
+    }
+  }
+
+  .menu {
+    flex: 1;
+
+    .menu-group {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 40px;
+
+      a {
+        text-decoration: none;
+        color: var(--text-secondary);
+        font-weight: 500;
+        font-size: 16px;
+        transition: color 0.2s;
+
+        &:hover {
+          color: var(--text-primary);
+        }
+
+        &.active {
+          color: var(--text-primary);
+          font-weight: 700;
+        }
+      }
+    }
+  }
+
+  .logout {
+    margin-top: auto;
+    a {
+      text-decoration: none;
+      color: var(--text-secondary);
+      font-weight: 500;
+      font-size: 14px;
+      
+      &:hover {
+        color: var(--text-primary);
+      }
+    }
+  }
+}
+
+/* MAIN CONTENT */
+.main-content {
+  flex: 1;
+  min-width: 0;
+  padding: 24px 48px 40px;
+  overflow-y: auto;
+}
+
+/* TOP NAVBAR */
+.top-navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+
+  .nav-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+
+    &:hover {
+      background-color: var(--item-hover-bg);
+      border-color: var(--pill-hover-border);
+    }
+  }
+
+  .nav-actions {
+    display: flex;
+    gap: 12px;
+
+    .hamburger {
+      display: none;
+    }
+  }
+}
+
+/* Featured Section */
+.featured-section {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 48px;
+
+  .featured-card {
+    flex: 1;
+    border-radius: 24px;
+    padding: 32px;
+    position: relative;
+    overflow: hidden;
+    height: 240px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 4px 20px var(--card-shadow);
+
+    &.yellow-card {
+      background-color: $yellow;
+      color: #111;
+    }
+
+    &.orange-card {
+      background-color: $orange;
+      color: #111;
+    }
+
+    .card-header {
+      .badge {
+        font-size: 12px;
+        font-weight: 600;
+        padding: 6px 12px;
+        border: 1px solid rgba(0,0,0,0.2);
+        border-radius: 20px;
+      }
+    }
+
+    .card-content {
+      z-index: 2;
+      h2 {
+        font-size: 32px;
+        line-height: 1.1;
+        margin: 0 0 16px 0;
+        font-weight: 800;
+      }
+
+      .play-btn {
+        background: #111;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 30px;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+
+        &.dark {
+          background: #111;
+        }
+
+        svg {
+          margin-top: 1px;
+        }
+      }
+    }
+  }
+}
+
+/* Based on your interests */
+.interests-section {
+  margin-bottom: 48px;
+
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+
+    h2 {
+      font-size: 20px;
+      margin: 0;
+    }
+
+    .view-more {
+      text-decoration: none;
+      font-size: 14px;
+      color: var(--text-secondary);
+      font-weight: 500;
+      
+      &:hover {
+        color: var(--text-primary);
+      }
+    }
+  }
+
+  .interests-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    .interest-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 12px 16px;
+      border-radius: 12px;
+      transition: background-color 0.2s;
+
+      &:hover {
+        background-color: var(--item-hover-bg);
+      }
+
+      .item-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #111;
+
+        &.pink-bg { background-color: $pink; }
+        &.green-bg { background-color: $green; }
+      }
+
+      .item-details {
+        flex: 1;
+        h3 {
+          margin: 0 0 4px 0;
+          font-size: 16px;
+          font-weight: 600;
+        }
+        p {
+          margin: 0;
+          font-size: 13px;
+          color: var(--text-secondary);
+        }
+      }
+
+      .item-category, .item-duration {
+        font-size: 14px;
+        color: var(--text-secondary);
+        font-weight: 500;
+        width: 150px;
+      }
+
+      .item-duration {
+        width: 80px;
+        text-align: right;
+      }
+
+      .heart-btn {
+        background: none;
+        border: none;
+        color: var(--text-secondary);
+        cursor: pointer;
+        padding: 8px;
+        
+        &.active {
+          color: var(--text-primary);
+        }
+      }
+    }
+  }
+}
+
+/* Podcasts Grid Section */
+.podcasts-section {
+  .pills-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+    gap: 12px;
+
+    .pills-left {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      width: 100%;
+      max-width: calc(100% - 160px);
+    }
+
+    .pill {
+      background: none;
+      border: 1px solid var(--pill-border);
+      color: var(--text-secondary);
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+      white-space: nowrap;
+
+      &:hover {
+        border-color: var(--pill-hover-border);
+        color: var(--text-primary);
+      }
+
+      &.active {
+        background: var(--pill-active-bg);
+        color: var(--pill-active-text);
+        border-color: var(--pill-active-bg);
+      }
+    }
+
+    .view-all {
+      text-decoration: none;
+      font-size: 14px;
+      color: var(--text-secondary);
+      font-weight: 500;
+      white-space: nowrap;
+
+      &:hover {
+        color: var(--text-primary);
+      }
+    }
+  }
+
+  .podcasts-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+
+    .podcast-card {
+      border-radius: 16px;
+      padding: 20px;
+      height: 160px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      color: #111;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 2px 10px var(--card-shadow);
+
+      &.pink-card { background-color: $pink; }
+      &.green-card { background-color: $green; }
+      &.orange-card-small { background-color: $orange; }
+      &.yellow-card-small { background-color: $yellow; }
+
+      .card-info {
+        position: relative;
+        z-index: 2;
+
+        .author {
+          font-size: 11px;
+          margin: 0 0 4px 0;
+          opacity: 0.8;
+          font-weight: 600;
+        }
+
+        h3 {
+          margin: 0;
+          font-size: 16px;
+          line-height: 1.2;
+          font-weight: 800;
+        }
+      }
+    }
+  }
+}
+
+/* ========== SIDEBAR OVERLAY (for mobile) ========== */
+.sidebar-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 1999;
+}
+
+/* ========== TABLET — max 1024px ========== */
+@media (max-width: 1024px) {
+  .sidebar {
+    width: 200px;
+    padding: 24px 18px;
+
+    .logo {
+      font-size: 17px;
+      margin-bottom: 32px;
+    }
+
+    .menu .menu-group {
+      gap: 12px;
+      margin-bottom: 28px;
+
+      a {
+        font-size: 14px;
+      }
+    }
+  }
+
+  .main-content {
+    padding: 20px 24px 32px;
+  }
+
+  .interests-section .section-header {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .featured-section {
+    gap: 16px;
+    margin-bottom: 36px;
+
+    .featured-card {
+      height: 200px;
+      padding: 24px;
+
+      .card-content h2 {
+        font-size: 26px;
+      }
+    }
+  }
+
+  .interests-section {
+    margin-bottom: 36px;
+
+    .interest-item {
+      .item-category {
+        width: 120px;
+        font-size: 13px;
+      }
+    }
+  }
+
+  .podcasts-section .podcasts-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+}
+
+/* ========== SMALL TABLET — max 768px ========== */
+@media (max-width: 768px) {
+  .dashboard-container {
+    flex-direction: column;
+  }
+
+  /* Sidebar becomes hidden by default */
+  .sidebar {
+    display: none;
+
+    &.open {
+      display: flex;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 260px;
+      height: 100vh;
+      z-index: 2000;
+      flex-direction: column;
+      padding: 32px 24px;
+      background-color: var(--sidebar-bg);
+      box-shadow: 4px 0 20px rgba(0, 0, 0, 0.15);
+      overflow-y: auto;
+    }
+  }
+
+  .sidebar-overlay.visible {
+    display: block;
+  }
+
+  /* Show hamburger */
+  .top-navbar .nav-actions .hamburger {
+    display: inline-flex;
+  }
+
+  .main-content {
+    padding: 16px 20px 32px;
+    min-height: calc(100vh - 80px);
+  }
+
+  .top-navbar {
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .top-navbar .nav-actions {
+    width: 100%;
+    justify-content: flex-end;
+  }
+
+  .featured-section {
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 32px;
+
+    .featured-card {
+      height: 180px;
+      padding: 24px;
+      border-radius: 20px;
+
+      .card-content h2 {
+        font-size: 24px;
+      }
+    }
+  }
+
+  .interests-section {
+    margin-bottom: 32px;
+
+    .interest-item {
+      gap: 12px;
+      padding: 10px 12px;
+
+      .item-category {
+        display: none;
+      }
+
+      .item-duration {
+        width: auto;
+      }
+    }
+  }
+
+  .podcasts-section {
+    .pills-row {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+
+      .view-all {
+        align-self: flex-start;
+      }
+
+      .pills-left {
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        width: 100%;
+        padding-bottom: 4px;
+
+        &::-webkit-scrollbar {
+          height: 3px;
+        }
+        &::-webkit-scrollbar-thumb {
+          background: rgba(0,0,0,0.15);
+          border-radius: 2px;
+        }
+      }
+
+      .view-all {
+        align-self: flex-end;
+      }
+    }
+
+    .podcasts-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+
+      .podcast-card {
+        height: 140px;
+        padding: 16px;
+      }
+    }
+  }
+}
+
+/* ========== MOBILE — max 480px ========== */
+@media (max-width: 480px) {
+  .main-content {
+    padding: 12px 14px 24px;
+  }
+
+  .top-navbar {
+    margin-bottom: 16px;
+
+    .nav-btn {
+      padding: 6px 12px;
+      font-size: 13px;
+      gap: 6px;
+
+      svg {
+        width: 16px;
+        height: 16px;
+      }
+    }
+
+    .nav-actions {
+      gap: 8px;
+    }
+
+    /* Hide text labels on small screens, keep icons */
+    .theme-toggle {
+      font-size: 0;
+      padding: 8px;
+      gap: 0;
+
+      svg {
+        width: 18px;
+        height: 18px;
+      }
+    }
+  }
+
+  .featured-section {
+    gap: 12px;
+    margin-bottom: 24px;
+
+    .featured-card {
+      height: 160px;
+      padding: 20px;
+      border-radius: 16px;
+
+      .card-header .badge {
+        font-size: 10px;
+        padding: 4px 8px;
+      }
+
+      .card-content {
+        h2 {
+          font-size: 20px;
+          margin-bottom: 10px;
+        }
+
+        .play-btn {
+          padding: 8px 14px;
+          font-size: 12px;
+        }
+      }
+    }
+  }
+
+  .interests-section {
+    margin-bottom: 24px;
+
+    .section-header h2 {
+      font-size: 17px;
+    }
+
+    .interest-item {
+      gap: 10px;
+      padding: 8px 8px;
+
+      .item-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 10px;
+
+        svg {
+          width: 20px;
+          height: 20px;
+        }
+      }
+
+      .item-details {
+        h3 {
+          font-size: 14px;
+        }
+        p {
+          font-size: 12px;
+        }
+      }
+
+      .item-duration {
+        font-size: 13px;
+      }
+
+      .heart-btn {
+        padding: 4px;
+
+        svg {
+          width: 16px;
+          height: 16px;
+        }
+      }
+    }
+  }
+
+  .podcasts-section {
+    .pills-left .pill {
+      padding: 6px 12px;
+      font-size: 12px;
+      white-space: nowrap;
+    }
+
+    .podcasts-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+
+      .podcast-card {
+        height: 120px;
+        padding: 14px;
+        border-radius: 12px;
+
+        .card-info {
+          .author {
+            font-size: 10px;
+          }
+          h3 {
+            font-size: 14px;
+          }
+        }
+      }
+    }
+  }
+}

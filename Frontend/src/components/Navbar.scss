@@ -8,8 +8,8 @@
   justify-content: space-between;
   align-items: center;
 
-  color: white;
-  mix-blend-mode: difference;
+  color: var(--text-primary);
+  /* mix-blend-mode removed for proper visibility */
 
   z-index: 1000;
 

@@ -15,6 +15,7 @@ import PageTransition from "./components/PageTransition";
 import AuthPage from "./components/AuthPage";
 import ProfilePage from "./components/ProfilePage";
 import DashboardPage from "./components/DashboardPage"; // ✅ USE THIS ONLY
+import Dashboard from "./components/Dashboard";
 
 /* 🔒 PROTECTED ROUTE */
 function ProtectedRoute({ children }) {
@@ -91,6 +92,8 @@ function App() {
             </ProtectedRoute>
           }
         />
+
+        <Route path="/dashboard" element={<Dashboard />} />
 
       </Routes>
     </BrowserRouter>
